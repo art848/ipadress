@@ -22,14 +22,18 @@ class LinkService {
     const favicons = [];
     const externalInfo = [];
     
-    const dataMain = await Promise.all(links.map((elem) => fetch(elem)));
+    try {
+      const dataMain = await Promise.all(links.map((elem) => fetch(elem)));
 
-    for (let elem of dataMain) {
-      //Receive text of HTML
-      let mainText = await elem.text();
-      htmlOfLinks.push(mainText)
-      //Receive statuses of Links
-      mainStatuses.push(elem.status);
+      for (let elem of dataMain) {
+        //Receive text of HTML
+        let mainText = await elem.text();
+        htmlOfLinks.push(mainText)
+        //Receive statuses of Links
+        mainStatuses.push(elem.status);
+      }
+    } catch (error) {
+      return "Please input the correct link"
     }
 
     for (let i = 0; i < links.length; i++) {
