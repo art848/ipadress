@@ -40,7 +40,7 @@ class LinkService {
       try {
         externalInfo.push([]);
         aTags.push(htmlOfLinks[i].match(aRegex));
-        aExternals.push([...new Set(aTags[i])].filter((el) => el.includes('http://') && !el.endsWith('.js') && !el.endsWith('.css') && !el.endsWith('.html') || el.includes('https://') && !el.endsWith('.js') && !el.endsWith('.css') && !el.endsWith('.html')));
+        aExternals.push(aTags[i].filter((el) => !el.includes('http://www') && el.includes('http://') && !el.endsWith('.js') && !el.endsWith('.css') && !el.endsWith('.html') && !el.includes(links[i]) || !el.includes('https://www') && el.includes('https://') && !el.endsWith('.js') && !el.endsWith('.css') && !el.endsWith('.html') && !el.includes(links[i])));
         title.push(htmlOfLinks[i].match(titleRegex));
         robots.push(String(htmlOfLinks[i].match(robotsRegex)));
         favicons.push(htmlOfLinks[i].match(faviconRegex));
@@ -49,7 +49,7 @@ class LinkService {
         hrefValues.push(aExternals[i].map(aTag => {
           const matches = aTag.match(/(?<=href=")[^"]+/g);
           return matches ? matches[0] : null;
-        }));
+        }).filter((elem, index, ar) => ar.indexOf(elem) === index));
 
         //Getting Keywords of Main links
         keywords.push(aExternals[i].map(string => {
