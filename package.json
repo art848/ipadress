@@ -24,6 +24,7 @@
     "node-abort-controller": "^3.0.1",
     "node-fetch": "^2.6.7",
     "node-worker-threads-pool": "^1.5.1",
+    "nodemailer": "^6.8.0",
     "nodemon": "^2.0.20",
     "os": "^0.1.2",
     "path": "^0.12.7",
@@ -31,6 +32,5 @@
     "re": "^0.1.4",
     "worker-thread": "^1.1.0"
   },
-  "devDependencies": {},
   "description": ""
 }
